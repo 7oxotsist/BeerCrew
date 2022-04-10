@@ -113,6 +113,26 @@ public static class Direction2D
         new Vector2Int(-1, 0) //Влево
     };
 
+     public static List<Vector2Int> diagonalDirectionList = new List<Vector2Int>
+    {
+        new Vector2Int(1,1), //ВВЕРХ-НАПРАВО
+        new Vector2Int(1,-1), //ВПРАВО-ВНИЗ
+        new Vector2Int(-1, -1), //ВНИЗ-ВЛЕВО
+        new Vector2Int(-1, 1) //ВЛЕВО-ВВЕРХ
+    };
+
+    public static List<Vector2Int> eightDirectionList = new List<Vector2Int>
+    {
+        new Vector2Int(0,1), //Вверх
+        new Vector2Int(1,1), //ВВЕРХ-НАПРАВО
+        new Vector2Int(1,0), //Вправо
+        new Vector2Int(1,-1), //ВПРАВО-ВНИЗ
+        new Vector2Int(0, -1), //Вниз
+        new Vector2Int(-1, -1), //ВНИЗ-ВЛЕВО
+        new Vector2Int(-1, 0), //Влево
+        new Vector2Int(-1, 1) //ВЛЕВО-ВВЕРХ
+    };
+
     public static Vector2Int GetRandomCardinalDirection()
     {
         return cardinalDirectionList[Random.Range(0, cardinalDirectionList.Count)];
