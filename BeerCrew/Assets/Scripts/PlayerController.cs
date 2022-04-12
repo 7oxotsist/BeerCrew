@@ -12,12 +12,31 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private float moveSpeed;
+    private bool facingRight;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate() {
-       rb.velocity = new Vector2(joyStick.Horizontal * moveSpeed, joyStick.Vertical * moveSpeed); 
+        float moveInputHorizontal = joyStick.Horizontal;
+        float moveInputVertical = joyStick.Vertical;
+
+       rb.velocity = new Vector2(moveInputHorizontal * moveSpeed, moveInputVertical * moveSpeed);
+
+       if(moveInputHorizontal>0 && facingRight)
+       {
+           Flip();
+       }
+       else if(moveInputHorizontal<0 && !facingRight)
+       {
+           Flip();
+       }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        transform.Rotate(0f, 180f, 0f);
     }
 }
