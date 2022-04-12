@@ -2,29 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
+
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    public float speed = 1;
-    
     private Rigidbody2D rb;
+    [SerializeField]
+    private FixedJoystick joyStick;
 
-    private Vector2 moveVelocity;
+    [SerializeField]
+    private float moveSpeed;
 
-    private void Start()
-    {
+    private void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        moveVelocity = moveInput.normalized * speed;
-    }
-    
     private void FixedUpdate() {
-        rb.MovePosition(rb.position + moveVelocity* Time.fixedDeltaTime);
+       rb.velocity = new Vector2(joyStick.Horizontal * moveSpeed, joyStick.Vertical * moveSpeed); 
     }
-
-
 }
