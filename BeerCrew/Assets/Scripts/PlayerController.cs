@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody2D), typeof(PolygonCollider2D))]
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public Animator animator;
+
     [SerializeField]
     private FixedJoystick joyStick;
 
@@ -21,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() {
         float moveInputHorizontal = joyStick.Horizontal;
         float moveInputVertical = joyStick.Vertical;
+
+        animator.SetFloat("moveSpeed", Mathf.Abs(moveInputHorizontal));
 
        rb.velocity = new Vector2(moveInputHorizontal * moveSpeed, moveInputVertical * moveSpeed);
 
